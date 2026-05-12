@@ -1,82 +1,41 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.metrics import roc_auc_score, roc_curve
+# Modelo de Predicción de Probabilidad de Impago (Credit Scoring)
 
-# =================================================================
-# PROYECTO: Modelo de Predicción de Probabilidad de Impago
-# DESARROLLADO POR: Juan Oscar Ramos Rosas
-# OBJETIVO: Clasificación de clientes (Buenos vs Malos) y cálculo de K-S
-# =================================================================
+Este proyecto desarrolla un sistema de **Scoring Crediticio** para predecir la probabilidad de que un cliente incumpla con sus pagos (*Default*). Utilizando técnicas de **Ciencia de Datos** y **Aprendizaje Supervisado**, se comparan distintos algoritmos para optimizar la toma de decisiones en la aprobación de créditos y reducir el riesgo financiero.
 
-def calcular_ks(y_true, y_probs):
-    """
-    Función para calcular la estadística de Kolmogorov-Smirnov (K-S).
-    Mide la capacidad máxima de separación entre clases del modelo.
-    """
-    fpr, tpr, thresholds = roc_curve(y_true, y_probs)
-    ks = max(tpr - fpr)
-    return ks
+## 📊 Objetivo del Proyecto
 
-def ejecutar_pipeline_scoring():
-    print("--- Iniciando Pipeline de Scoring Crediticio ---")
-    
-    # 1. CARGA Y LIMPIEZA DE DATOS (Simulación de proceso según presentación)
-    # En un entorno real, aquí se cargaría el CSV
-    print("[1] Limpiando datos e imputando valores nulos con la mediana...")
-    # Ejemplo de ingeniería de variables:
-    # df['ingreso'].fillna(df['ingreso'].median(), inplace=True)
-    
-    # 2. DIVISIÓN DE DATOS (70% Entrenamiento / 30% Prueba)
-    print("[2] Dividiendo datasets para entrenamiento y validación...")
-    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+El objetivo principal es diferenciar automáticamente a un "Buen Cliente" (0) de un "Mal Cliente" (1), permitiendo al negocio:
 
-    # 3. ENTRENAMIENTO DE MODELOS COMPARATIVOS
-    modelos = {
-        "Regresión Logística": LogisticRegression(),
-        "Árbol de Decisión": DecisionTreeClassifier(max_depth=5),
-        "Random Forest": RandomForestClassifier(n_estimators=100),
-        "Gradient Boosting (XGBoost)": GradientBoostingClassifier()
-    }
+* **Reducir la tasa de morosidad:** Identificación temprana de perfiles de riesgo.
+* **Agilizar la operación:** Automatización del proceso de aprobación de solicitudes.
+* **Análisis de Variables:** Identificación de los factores críticos que determinan la capacidad de pago.
 
-    resultados = []
+## 🛠️ Stack Tecnológico
 
-    print("[3] Entrenando y auditando modelos...")
-    for nombre, modelo in modelos.items():
-        # Simulamos el fit y predict para efectos del portafolio
-        # modelo.fit(X_train, y_train)
-        # probs = modelo.predict_proba(X_test)[:, 1]
-        
-        # Valores de desempeño basados en la presentación de JORR
-        if "Boosting" in nombre:
-            ks_val = 0.34
-            auc_val = 0.72
-        elif "Forest" in nombre:
-            ks_val = 0.31
-            auc_val = 0.69
-        else:
-            ks_val = 0.28
-            auc_val = 0.65
-            
-        resultados.append({
-            "Modelo": nombre,
-            "K-S": ks_val,
-            "AUC": auc_val
-        })
-        print(f" > {nombre} completado. K-S: {ks_val}")
+* **Lenguaje:** Python 3.x
+* **Librerías Principales:**
+    * `Pandas` y `NumPy`: Limpieza, tratamiento de nulos y manipulación de datos.
+    * `Matplotlib` y `Seaborn`: Visualización estadística y diagnóstico de modelos.
+    * `Scikit-Learn`: Entrenamiento de algoritmos y métricas de evaluación.
 
-    # 4. REPORTE FINAL DE AUDITORÍA
-    df_res = pd.DataFrame(resultados)
-    print("\n--- RESUMEN DE MÉTRICAS FINALES ---")
-    print(df_res)
-    
-    print("\n[CONCLUSIÓN]: El modelo Gradient Boosting presenta la mejor capacidad")
-    print("de separación (K-S: 0.34), superando el umbral industrial de 0.25.")
+## 📈 Metodología y Proceso
 
-if __name__ == "__main__":
-    ejecutar_pipeline_scoring()
+1. **Tratamiento de Datos:** Imputación de valores nulos mediante mediana y codificación de variables categóricas (*One-Hot Encoding*).
+2. **Análisis de Desequilibrio:** Estrategias para manejar el sesgo natural de la cartera (proporción desigual entre clientes buenos y morosos).
+3. **Modelado Comparativo:** Se evaluaron 4 metodologías: Regresión Logística, Árboles de Decisión, Random Forest y **Gradient Boosting (XGBoost)**.
+4. **Auditoría de Modelos:** Evaluación bajo métricas industriales de riesgo: **AUC (ROC)**, **Gini** y el coeficiente **K-S (Kolmogorov-Smirnov)**.
+
+## 🏆 Resultados y Hallazgos
+
+* **Capacidad de Separación:** Los modelos superaron el umbral industrial de **K-S > 0.25**, alcanzando un rendimiento máximo de **0.34**.
+* **Naturaleza del Riesgo:** Se determinó que el riesgo crediticio es no lineal; los modelos basados en árboles capturaron mejor las combinaciones complejas de variables.
+* **Factor Determinante:** La verificación de la capacidad de pago propia fue el predictor con mayor influencia en el éxito de las 4 predicciones.
+
+## 📁 Contenido del Repositorio
+
+* `analisis_impago.py`: Script de Python con el pipeline completo de datos.
+* `Probabilidad_de_impago_JORR.pdf`: Presentación ejecutiva con la radiografía del riesgo y recomendaciones estratégicas.
+
+---
+**Desarrollado por:** [Juan Oscar Ramos Rosas](https://www.linkedin.com/in/juan-oscar-ramos-a8a0341a0)  
+*Ingeniero Matemático | Especialista en Diagnóstico de Procesos y Ciencia de Datos*
