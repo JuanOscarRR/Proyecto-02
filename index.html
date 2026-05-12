@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Datos | Juan Oscar Ramos Rosas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header / Nav -->
+    <nav class="bg-slate-900 text-white p-4 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">JUAN OSCAR RAMOS ROSAS <span class="text-blue-400">| Data Analytics</span></h1>
+            <div class="space-x-6 hidden md:block">
+                <a href="#dashboard" class="hover:text-blue-400 transition">Dashboard</a>
+                <a href="#metodologia" class="hover:text-blue-400 transition">Metodología</a>
+                <a href="#contacto" class="hover:text-blue-400 transition">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Proyecto: Predicción de Riesgo de Impago</h2>
+            <p class="text-xl text-slate-300 mb-8">Auditoría y optimización de modelos de Credit Scoring mediante análisis de probabilidad de morosidad.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="analisis_impago.py" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 transition">
+                    <i class="fab fa-python"></i> Ver Código Python
+                </a>
+                <a href="#" class="bg-white text-slate-900 hover:bg-slate-100 px-6 py-3 rounded-lg font-bold flex items-center gap-2 transition">
+                    <i class="fas fa-file-pdf text-red-600"></i> Descargar Reporte PDF
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard de Métricas -->
+    <main id="dashboard" class="max-w-6xl mx-auto py-12 px-4">
+        <h3 class="text-2xl font-bold mb-8 text-slate-800 border-b pb-2">Resultados de la Auditoría de Modelos</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Card K-S -->
+            <div class="glass p-6 rounded-2xl shadow-sm text-center">
+                <p class="text-sm font-bold text-slate-500 uppercase">Kolmogorov-Smirnov (K-S)</p>
+                <h4 class="text-5xl font-black text-blue-600 my-2">0.34</h4>
+                <p class="text-xs text-green-600 font-bold bg-green-50 py-1 px-2 rounded-full inline-block">Óptimo (> 0.25)</p>
+                <p class="text-sm text-slate-600 mt-4">Poder de discriminación entre clientes buenos y malos.</p>
+            </div>
+
+            <!-- Card Gini -->
+            <div class="glass p-6 rounded-2xl shadow-sm text-center">
+                <p class="text-sm font-bold text-slate-500 uppercase">Índice Gini</p>
+                <h4 class="text-5xl font-black text-indigo-600 my-2">0.44</h4>
+                <p class="text-xs text-indigo-600 font-bold bg-indigo-50 py-1 px-2 rounded-full inline-block">Modelo Sólido</p>
+                <p class="text-sm text-slate-600 mt-4">Medida de la desigualdad en la distribución de probabilidades.</p>
+            </div>
+
+            <!-- Card AUC -->
+            <div class="glass p-6 rounded-2xl shadow-sm text-center">
+                <p class="text-sm font-bold text-slate-500 uppercase">AUC-ROC</p>
+                <h4 class="text-5xl font-black text-emerald-600 my-2">0.72</h4>
+                <p class="text-xs text-emerald-600 font-bold bg-emerald-50 py-1 px-2 rounded-full inline-block">Precisión Elevada</p>
+                <p class="text-sm text-slate-600 mt-4">Probabilidad de que el modelo clasifique correctamente.</p>
+            </div>
+        </div>
+
+        <!-- Seccion Metodología -->
+        <section id="metodologia" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-2xl font-bold mb-4 text-slate-800">Metodología JORR</h3>
+                <p class="text-slate-600 mb-4 leading-relaxed">
+                    Se implementó un pipeline de limpieza de datos en Python, eliminando valores atípicos y tratando variables nulas. 
+                    El modelo final seleccionado fue <strong>Gradient Boosting</strong> tras comparar su desempeño contra Regresión Logística y Árboles de Decisión.
+                </p>
+                <ul class="space-y-3">
+                    <li class="flex items-center gap-3 text-slate-700">
+                        <i class="fas fa-check-circle text-blue-500"></i> Análisis de Multicolinealidad (VIF)
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                        <i class="fas fa-check-circle text-blue-500"></i> Balanceo de clases (SMOTE)
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-700">
+                        <i class="fas fa-check-circle text-blue-500"></i> Validación Cruzada (K-Fold)
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-slate-100 p-8 rounded-3xl border-2 border-dashed border-slate-300 text-center">
+                <i class="fas fa-chart-line text-6xl text-slate-400 mb-4"></i>
+                <p class="text-slate-500 font-medium">Gráficos de Curva ROC y Lift Chart generados en el script de Python adjunto.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-slate-900 text-white py-12 px-4 mt-12">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-2xl font-bold mb-6">¿Te interesa mi perfil técnico?</h3>
+            <div class="flex justify-center gap-8 mb-8">
+                <a href="https://linkedin.com" target="_blank" class="text-3xl hover:text-blue-400 transition"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com" target="_blank" class="text-3xl hover:text-slate-400 transition"><i class="fab fa-github"></i></a>
+                <a href="mailto:tuemail@ejemplo.com" class="text-3xl hover:text-red-400 transition"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="text-slate-500">&copy; 2024 Juan Oscar Ramos Rosas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
